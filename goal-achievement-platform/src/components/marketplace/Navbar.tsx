@@ -36,7 +36,7 @@ const Navbar = () => {
 
               {isSeller && (
                 <button
-                  onClick={() => router.push("/seller")}
+                  onClick={() => router.push("/dashboard/Marketplace/seller")}
                   className="border border-orange-600 text-orange-600 hover:bg-orange-50 transition px-4 py-1.5 rounded-full text-xs font-semibold"
                 >
                   Seller Dashboard
