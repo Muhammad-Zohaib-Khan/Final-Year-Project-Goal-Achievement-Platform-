@@ -38,7 +38,7 @@ const Home=()=> {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Link href="/dashboard">
+          <Link href="/login">
             <Button className="bg-green-600 hover:bg-green-700 text-white text-lg px-6 py-3 rounded-full shadow-lg transition-all">
               Get Started
               <ArrowRight className="ml-2 w-5 h-5" strokeWidth={3} />
