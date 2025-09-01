@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { auth } from "../../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import DashboardBar from "@/components/dashboard/DashboardBar";
+import Dashboard from "@/components/dashboard/DashboardBar";
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
@@ -35,5 +35,5 @@ export default function DashboardPage() {
     return <div className="flex h-screen items-center justify-center">Loading...</div>;
   }
 
-  return <DashboardBar user={user} onLogout={handleLogout} />;
+  return <Dashboard/>;
 }

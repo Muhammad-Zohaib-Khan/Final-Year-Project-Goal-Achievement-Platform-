@@ -5,12 +5,12 @@ import { formatISO } from "date-fns";
 
 
 
-type TaskType = {
+export type TaskType = {
   id: number;
   title: string;
   description: string;
   status: string;
-  priority?: string;
+  priority?: "Low"|"High"|"Medium"|"Urgent"|string;
   tags?: string;
   points?: number;
   startDate?: string;
@@ -30,7 +30,7 @@ enum Status {
 }
 
 
-enum Priority {
+export enum Priority {
   Urgent = "Urgent",
   High = "High",
   Medium = "Medium",

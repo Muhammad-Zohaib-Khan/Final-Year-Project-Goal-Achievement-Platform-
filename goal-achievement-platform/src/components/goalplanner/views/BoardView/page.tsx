@@ -2,24 +2,11 @@
 import React, { useRef, useState } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { EllipsisVertical, MessageSquareMore, Plus, Trash2Icon, Edit } from "lucide-react";
+import { EllipsisVertical, Plus, Trash2Icon, Edit } from "lucide-react";
 import { format } from "date-fns";
 import Image from "next/image";
 import ModelUpdateTask from "@/components/goalplanner/ModelUpdateTask";
-
-type TaskType = {
-  id: number;
-  title: string;
-  description: string;
-  status: string;
-  priority?: "Low" | "Medium" | "High" | "Urgent";
-  tags?: string;
-  startDate?: string;
-  dueDate?: string;
-  comments?: { id: number }[];
-  assignee?: { userId: number; username: string; profilePictureUrl?: string };
-  author?: { userId: number; username: string; profilePictureUrl?: string };
-};
+import { TaskType } from "@/components/goalplanner/ModelUpdateTask";
 
 type BoardProps = {
   id: string;
@@ -194,7 +181,7 @@ const TaskColumn = ({
   return (
     <div
       ref={columnRef}
-      className={`rounded-xl border-2 ${statusColors[status as keyof typeof statusColors]} ${
+      className={`rounded-xl border-2 overflow-hidden  ${statusColors[status as keyof typeof statusColors]} ${
         isOver ? "opacity-70" : ""
       } transition-all duration-200`}
     >
@@ -208,7 +195,7 @@ const TaskColumn = ({
               {tasksCount}
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mb-7">
             <button
               onClick={() => setIsModalNewTaskOpen(true)}
               className="rounded-lg p-1.5 text-gray-500 hover:bg-white hover:text-gray-700"
@@ -269,9 +256,8 @@ const Task = ({ task, onEditClick, onDeleteClick }: TaskProps) => {
     : "";
   const formattedDue = task.dueDate ? format(new Date(task.dueDate), "MMM d") : "";
   const taskTags = task.tags?.split(",") || [];
-  const numberOfComments = task.comments?.length || 0;
 
-  const priorityColors = {
+  const priorityColors:Record<"Low" | "Medium" |"High" | "Urgent"|string, string> = {
     "Low": "bg-blue-100 text-blue-800",
     "Medium": "bg-yellow-100 text-yellow-800",
     "High": "bg-orange-100 text-orange-800",
@@ -360,12 +346,7 @@ const Task = ({ task, onEditClick, onDeleteClick }: TaskProps) => {
           </div>
           
           <div className="flex items-center">
-            {numberOfComments > 0 && (
-              <div className="flex items-center text-gray-500">
-                <MessageSquareMore size={16} className="mr-1" />
-                <span className="text-xs">{numberOfComments}</span>
-              </div>
-            )}
+            
             
             {task.assignee && (
               <div className="ml-3 flex -space-x-2 overflow-hidden">

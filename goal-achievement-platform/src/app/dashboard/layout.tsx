@@ -1,20 +1,24 @@
 // ✅ CLIENT COMPONENT
 "use client";
 
-import { Provider } from "react-redux";
-import { store } from "../../redux/store";
 import {ProductProvider} from "@/context/ContextProvidrer"
-
-export default function ReduxProviderWrapper({
+import {GoalProvider} from '@/context/GoalContext'
+import {TaskProvider} from '@/context/TaskContext'
+export default function ({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return( 
+    
   <>
     {/*<Provider store={store}>*/}
     <ProductProvider>
+      <GoalProvider>
+        <TaskProvider>
       {children}
+        </TaskProvider>
+      </GoalProvider>
     {/*</Provider>*/}
     </ProductProvider>
   </>

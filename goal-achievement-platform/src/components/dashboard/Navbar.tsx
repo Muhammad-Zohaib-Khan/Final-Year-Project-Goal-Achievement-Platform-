@@ -12,7 +12,7 @@ interface Props {
 
 const Navbar: React.FC<Props> = ({ toggleSidebar, user, onLogout }) => {
   return (
-    <nav className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-4 flex justify-between items-center shadow-md">
+    <nav className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-4 flex justify-between items-center shadow-md rounded-sm">
       {/* Left Section */}
       <div className="flex items-center">
         <button 
