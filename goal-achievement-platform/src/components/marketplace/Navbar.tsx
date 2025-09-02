@@ -1,76 +1,95 @@
-import {User,Search} from 'lucide-react'
-import Link from "next/link";
-import { useProductContext } from "@/context/ContextProvidrer";
-import Image from "next/image";
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+
+const highlights = [
+  "⚡ Fast & Secure Payments",
+  "🛍️ Over 10,000+ Products",
+];
+const rightside = "✨ Shop Smarter. Sell Faster.";
+
+// Animation variants
+const container = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05, // typing effect
+    },
+  },
+};
+
+const child = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const Navbar = () => {
-  const { isSeller, router } = useProductContext();
+  const [index, setIndex] = useState(0);
+
+  // Auto-rotate highlights every 3s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % highlights.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <header>
-        <nav className="w-full border-b border-gray-200 bg-white shadow-sm">
-          <div className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-4 text-gray-700 font-sans">
-            
-            {/* Logo */}
-            {/*<Image
-              src="https://media.istockphoto.com/id/1466153678/photo/shield-concept-3d-rendering-shield-with-check-mark.webp?a=1&b=1&s=612x612&w=0&k=20&c=IBV4xLxrSCBD7Y6dA78PveT7Qq2I1U0ouEtxTM-SSrU="
-              alt="Logo"
-              className="w-28 md:w-32 cursor-pointer"
-              onClick={() => router.push("/")}
-            />*/}
+      <nav className="w-full border-b border-orange-300 bg-gradient-to-r from-orange-100 via-white to-orange-50 shadow-md">
+        <div className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-4 font-sans">
 
-            {/* Links (Desktop) */}
-            <div className="hidden md:flex items-center gap-6 lg:gap-10 text-sm">
-              <Link href="/" className="hover:text-orange-600 transition font-semibold">
-                Home
-              </Link>
-              <Link href="/all-products" className="hover:text-orange-600 transition font-semibold">
-                Shop
-              </Link>
-              <Link href="/about" className="hover:text-orange-600 transition font-semibold">
-                About Us
-              </Link>
-              <Link href="/contact" className="hover:text-orange-600 transition font-semibold">
-                Contact
-              </Link>
-
-              {isSeller && (
-                <button
-                  onClick={() => router.push("/dashboard/Marketplace/seller")}
-                  className="border border-orange-600 text-orange-600 hover:bg-orange-50 transition px-4 py-1.5 rounded-full text-xs font-semibold"
-                >
-                  Seller Dashboard
-                </button>
-              )}
-            </div>
-
-            {/* Right Icons */}
-            <div className="hidden md:flex items-center gap-6">
-              <Search className="w-5 h-5" />
-              <button className="flex items-center gap-2 hover:text-orange-600 transition font-semibold">
-                <User className="w-5 h-5" />
-                Account
-              </button>
-            </div>
-
-            {/* Mobile */}
-            <div className="md:hidden flex items-center gap-4">
-              {isSeller && (
-                <button
-                  onClick={() => router.push("/seller")}
-                  className="text-xs border px-3 py-1.5 rounded-full font-medium hover:bg-orange-50 border-orange-600 text-orange-600 transition"
-                >
-                  Seller
-                </button>
-              )}
-              <button className="flex items-center gap-1 hover:text-orange-600 transition font-semibold">
-                <User className="w-5 h-5" />
-                Account
-              </button>
-            </div>
+          {/* Animated Highlight Badge */}
+          <div className="flex items-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  boxShadow: [
+                    "0 0 0px rgba(249,115,22,0.6)", // Tailwind orange-500
+                    "0 0 12px rgba(249,115,22,0.8)",
+                    "0 0 0px rgba(249,115,22,0.6)",
+                  ],
+                }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.5 }}
+                className="px-4 py-1 rounded-full border border-orange-500 text-orange-600 font-semibold text-sm bg-orange-50 shadow-sm"
+              >
+                {highlights[index]}
+              </motion.div>
+            </AnimatePresence>
           </div>
-        </nav>
 
+          {/* Right Side (typing-like animation) */}
+          <div className="hidden md:flex items-center gap-6">
+            <motion.div
+              className="text-orange-700 font-semibold text-base tracking-wide"
+              variants={container}
+              initial="hidden"
+              animate="visible"
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+              }}
+            >
+              {rightside.split("").map((char, i) => (
+                <motion.span key={i} variants={child}>
+                  {char}
+                </motion.span>
+              ))}
+            </motion.div>
+          </div>
+
+
+        </div>
+      </nav>
     </header>
   );
 };

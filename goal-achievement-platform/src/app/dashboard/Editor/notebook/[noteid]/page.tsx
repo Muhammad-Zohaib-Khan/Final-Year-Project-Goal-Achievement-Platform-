@@ -3,16 +3,8 @@
 import DeleteButton from "@/components/editior/DeleteButton";
 import TipTapEditor from "@/components/editior/TipTapEditor";
 import { Button } from "@/components/ui/button";
-// BACKEND IMPORTS (commented out)
-// import { clerk } from "@/lib/clerk-server"; // <-- Used to get full user data
-// import { db } from "@/lib/db";              // <-- DB client for querying notes
-// import { $notes } from "@/lib/db/schema";   // <-- Notes table schema
-// import { auth } from "@clerk/nextjs";       // <-- For getting current user
-// import { and, eq } from "drizzle-orm";      // <-- For conditional SQL
-// import { redirect } from "next/navigation"; // <-- For navigation on auth failure
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 
 type Props = {
   params: {

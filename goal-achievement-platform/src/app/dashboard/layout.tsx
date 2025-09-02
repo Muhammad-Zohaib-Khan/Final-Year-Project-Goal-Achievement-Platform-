@@ -1,21 +1,27 @@
-// ✅ CLIENT COMPONENT
 "use client";
 
-import { Provider } from "react-redux";
-import { store } from "../../redux/store";
-import {ProductProvider} from "@/context/ContextProvidrer"
+import { ProductProvider } from "@/context/ContextProvidrer";
+import { GoalProvider } from "@/context/GoalContext";
+import { TaskProvider } from "@/context/TaskContext";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
-export default function ReduxProviderWrapper({
+import Bar from "@/lib/AppSidebar";
+
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return( 
-  <>
-    {/*<Provider store={store}>*/}
+  return (
     <ProductProvider>
-      {children}
-    {/*</Provider>*/}
+      <GoalProvider>
+        <TaskProvider>
+          <SidebarProvider>
+            <Bar />
+            <main className="w-full">{children}</main>
+          </SidebarProvider>
+        </TaskProvider>
+      </GoalProvider>
     </ProductProvider>
-  </>
-)}
+  );
+}
