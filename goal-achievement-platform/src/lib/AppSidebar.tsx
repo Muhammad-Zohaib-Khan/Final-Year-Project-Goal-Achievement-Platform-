@@ -107,7 +107,7 @@ const Bar = (props: Props) => {
             <Sidebar variant="floating" className="z-50 h-full">
               <SidebarContent>
                 <SidebarGroup>
-                  <SidebarGroupLabel className="text-2xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tight">Assignbase</SidebarGroupLabel>
+                  <SidebarGroupLabel className="text-2xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tight">GoalGlee</SidebarGroupLabel>
                   <SidebarGroupContent>
                     <SidebarMenu>
                       {navItems.map((item) => {
