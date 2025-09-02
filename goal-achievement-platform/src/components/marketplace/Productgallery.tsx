@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { FaChevronLeft, FaChevronRight, FaHeart, FaShare } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { IoFlash } from 'react-icons/io5';
 import { toast } from "react-hot-toast";
 import { ProductType } from "@/data/productdata";
 
 const ProductGallery = ({ product }: { product: ProductType }) => {
   const [mainImage, setMainImage] = useState(product.image_url);
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [isZoomed, setIsZoomed] = useState(false);
 

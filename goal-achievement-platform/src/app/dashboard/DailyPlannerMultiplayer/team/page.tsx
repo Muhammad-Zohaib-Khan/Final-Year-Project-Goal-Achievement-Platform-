@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Header from "@/components/goalplanner/Header";
 import { teams } from "@/data/teams";
@@ -51,7 +50,6 @@ const userColumns: GridColDef<User>[] = [
 ];
 
 const TeamPage = () => {
-  const router = useRouter();
   const [mounted, setMounted] = React.useState(false);
   const [selectedTeam, setSelectedTeam] = React.useState<string | null>(null);
   const [showUsers, setShowUsers] = React.useState(false);

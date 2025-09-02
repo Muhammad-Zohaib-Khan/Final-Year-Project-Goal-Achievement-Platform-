@@ -6,7 +6,6 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import React from "react";
 
 type Props = {
-  id: string;
   setIsModalNewTaskOpen: (isOpen: boolean) => void;
 };
 
@@ -97,7 +96,7 @@ const mockTasks: Task[] = [
   },
 ];
 
-const TableView = ({ id, setIsModalNewTaskOpen }: Props) => {
+const TableView = ({setIsModalNewTaskOpen }: Props) => {
   const tasks = mockTasks;
 
   return (

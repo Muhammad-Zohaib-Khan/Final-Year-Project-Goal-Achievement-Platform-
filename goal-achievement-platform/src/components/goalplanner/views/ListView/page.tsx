@@ -9,7 +9,6 @@ import React from "react";
 // import { Task, useGetTasksQuery } from "@/state/api";
 
 type Props = {
-  id: string;
   setIsModalNewTaskOpen: (isOpen: boolean) => void;
 };
 
@@ -57,7 +56,7 @@ const mockTasks: Task[] = [
   },
 ];
 
-const ListView = ({ id, setIsModalNewTaskOpen }: Props) => {
+const ListView = ({ setIsModalNewTaskOpen }: Props) => {
   // 🟡 BACKEND: Replace below with actual API call
   // const { data: tasks, error, isLoading } = useGetTasksQuery({ projectId: Number(id) });
 

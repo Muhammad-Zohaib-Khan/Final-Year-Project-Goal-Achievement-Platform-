@@ -5,7 +5,6 @@ import "gantt-task-react/dist/index.css";
 import React, { useMemo, useState } from "react";
 
 type Props = {
-  id: string;
   setIsModalNewTaskOpen: (isOpen: boolean) => void;
 };
 
@@ -19,24 +18,11 @@ type Task = {
   points?: number;
 };
 
-const Timeline = ({ id, setIsModalNewTaskOpen }: Props) => {
-  const tasks: Task[] = [
-    {
-      id: 1,
-      title: "Frontend UI Setup",
-      startDate: "2025-06-20",
-      dueDate: "2025-06-25",
-      points: 5,
-    },
-    {
-      id: 2,
-      title: "API Integration",
-      startDate: "2025-06-26",
-      dueDate: "2025-06-30",
-      points: 7,
-    },
-  ];
-
+const Timeline = ({ setIsModalNewTaskOpen }: Props) => {
+  const tasks = useMemo<Task[]>(() => [
+  { id: 1, title: "Frontend UI Setup", startDate: "2025-06-20", dueDate: "2025-06-25", points: 5 },
+  { id: 2, title: "API Integration", startDate: "2025-06-26", dueDate: "2025-06-30", points: 7 },
+], []);
   const [displayOptions, setDisplayOptions] = useState<DisplayOption>({
     viewMode: ViewMode.Month,
     locale: "en-US",

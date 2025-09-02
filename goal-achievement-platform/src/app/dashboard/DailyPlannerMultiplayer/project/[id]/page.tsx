@@ -24,16 +24,16 @@ const Project = ({ id }: Props) => {
       />
       <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTab === "Board" && (
-        <BoardView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+        <BoardView setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
       {activeTab === "List" && (
-        <ListView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+        <ListView  setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
       {activeTab === "Timeline" && (
-        <TimelineView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+        <TimelineView  setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
       {activeTab === "Table" && (
-        <TableView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+        <TableView setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
     </div>
   );

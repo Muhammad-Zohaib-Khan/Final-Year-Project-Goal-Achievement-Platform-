@@ -9,7 +9,6 @@ import ModelUpdateTask from "@/components/goalplanner/ModelUpdateTask";
 import { TaskType } from "@/components/goalplanner/ModelUpdateTask";
 
 type BoardProps = {
-  id: string;
   setIsModalNewTaskOpen: (isOpen: boolean) => void;
 };
 
@@ -22,7 +21,7 @@ const teamMembers = [
 
 const taskStatus = ["To Do", "Work In Progress", "Under Review", "Completed"];
 
-const BoardView = ({ id, setIsModalNewTaskOpen }: BoardProps) => {
+const BoardView = ({setIsModalNewTaskOpen }: BoardProps) => {
   const [taskList, setTaskList] = useState<TaskType[]>([
     {
       id: 1,

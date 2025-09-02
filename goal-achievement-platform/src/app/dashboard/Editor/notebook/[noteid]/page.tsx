@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 
 import Link from "next/link";
 
-type Props = {
-  params: {
-    noteId:string|number;
-  };
-};
+// type Props = {
+//   params: {
+//     noteId:string|number;
+//   };
+// };
 
 // Dummy note and user data (Frontend Only)
 const mockNote = {
@@ -26,7 +26,7 @@ const mockUser = {
   lastName: "Doe",
 };
 
-const NotebookPage = ({ params: { noteId } }: Props) => {
+const NotebookPage = () => {
   // BACKEND (commented out):
   // const { userId } = await auth();
   // if (!userId) return redirect("/dashboard");

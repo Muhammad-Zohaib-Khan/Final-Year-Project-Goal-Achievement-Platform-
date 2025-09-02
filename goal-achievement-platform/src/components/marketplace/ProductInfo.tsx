@@ -9,13 +9,13 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
   const { addToCart } = useProductContext();
   const router = useRouter();
   const [isWishlisted, setIsWishlisted] = useState(false);
-  const [quantity, setQuantity] = useState(1); // ✅ Fixed missing quantity state
+  const [quantity] = useState(1);; // ✅ Fixed missing quantity state
 
   const discountPercentage = Math.floor(Math.random() * 30) + 10;
   const discountedPrice = (product.price * (1 - discountPercentage / 100)).toFixed(2);
 
   const handleAddToCart = () => {
-    addToCart(product.recipe_id, quantity);
+    addToCart(product.recipe_id.toString());
     toast.success(`${quantity} ${product.title} added to cart!`, {
       position: 'bottom-right',
       icon: <FaShoppingCart className="text-orange-500" />,
@@ -23,7 +23,7 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
   };
 
   const handleBuyNow = () => {
-    addToCart(product.recipe_id, quantity);
+    addToCart(product.recipe_id.toString());
     router.push("/dashboard/Marketplace/cart");
   };
 

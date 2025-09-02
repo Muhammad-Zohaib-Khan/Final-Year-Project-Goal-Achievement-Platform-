@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
+import Image from 'next/image';
+
 import { 
   Anchor, 
   CheckSquare, 
@@ -18,19 +18,15 @@ import {
 
 
 interface Xrops {
-  user: any;
+  user: undefined;
   onLogout: () => void;   // ✅ added this
 }
-interface Props {
-  onMenuToggle: () => void;
-  isSidebarOpen: boolean;
-  // ...other props
-}
-const Dashboard: React.FC<Xrops> = ({ user, onLogout }) => {
+
+const Dashboard: React.FC<Xrops> = () => {
   const [depth, setDepth] = useState(150);
   const [oxygenLevel, setOxygenLevel] = useState(85);
   const [isDescending, setIsDescending] = useState(true);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   const maxDepth = 200;
   const criticalDepth = 180;
   
@@ -81,9 +77,6 @@ const Dashboard: React.FC<Xrops> = ({ user, onLogout }) => {
     }
   };
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
   
   return (
     <div className="flex h-screen bg-[#0f172a] overflow-hidden">
@@ -171,9 +164,11 @@ const Dashboard: React.FC<Xrops> = ({ user, onLogout }) => {
                 <div className="col-span-2 bg-[#243242] p-4 rounded-lg relative">
                   <div className="rounded-lg overflow-hidden">
                     <div className="relative">
-                      <img 
+                      <Image
                         src="https://images.pexels.com/photos/3894467/pexels-photo-3894467.jpeg"
                         alt="Submarine"
+                        width={800}   
+                        height={400}  
                         className="w-full h-48 object-cover rounded-lg"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#1a2b3c] to-transparent"></div>

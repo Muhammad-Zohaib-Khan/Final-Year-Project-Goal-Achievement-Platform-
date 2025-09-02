@@ -6,18 +6,17 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-type Note = {
-  id: string;
-  name: string;
-  imageUrl: string;
-  createdAt: string;
-};
+// type Note = {
+//   id: string;
+//   name: string;
+//   imageUrl: string;
+//   createdAt: string;
+// };
 
 const DashboardPage = () => {
-  const [notes, setNotes] = useState<Note[]>([
+  const notes =[
     {
       id: "1",
       name: "Sample Note",
@@ -31,7 +30,7 @@ const DashboardPage = () => {
       createdAt: new Date().toISOString(),
     },
     // Add more dummy notes here if needed
-  ]);
+  ];
 
   // BACKEND REPLACEMENT:
   // useEffect(() => {

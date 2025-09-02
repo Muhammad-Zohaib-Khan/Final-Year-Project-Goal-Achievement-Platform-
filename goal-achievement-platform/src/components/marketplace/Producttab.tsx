@@ -89,7 +89,7 @@ const ProductTabs = ({ product, selectedTab, onTabChange }: ProductTabsProps) =>
             <div>
               <h4 className="font-medium text-gray-900 mb-2">Return Policy</h4>
               <p className="text-gray-700">
-                If you're not completely satisfied with your purchase, you can return it within 30 days 
+                If not completely satisfied with your purchase, you can return it within 30 days 
                 for a full refund or exchange. Items must be in original condition with all tags attached.
               </p>
             </div>

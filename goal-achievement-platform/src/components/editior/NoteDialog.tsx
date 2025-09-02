@@ -18,9 +18,9 @@ import toast from 'react-hot-toast';
 // import { useMutation } from "@tanstack/react-query"; // <-- Used for handling async backend mutations
 // import { useRouter } from "next/navigation";        // <-- For programmatic navigation after note creation
 
-type Props = {};
 
-const CreateNoteDialog = (props: Props) => {
+
+const CreateNoteDialog = () => {
   const [input, setInput] = React.useState("");
 
   // BACKEND: Normally you'd call an API and upload data using this

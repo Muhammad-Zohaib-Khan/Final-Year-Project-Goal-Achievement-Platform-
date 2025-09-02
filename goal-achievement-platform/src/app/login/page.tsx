@@ -26,8 +26,8 @@ export default function LoginPage() {
       setPassword("");
       toast.success("Login successful ✅");
       router.push("/dashboard");
-    } catch (err: any) {
-      toast.error(err.message);
+    } catch{
+      toast.error("Failed to Login");
     } finally {
       setLoading(false);
     }
@@ -41,8 +41,8 @@ export default function LoginPage() {
     try {
       await sendPasswordResetEmail(auth, email);
       toast.success("Password reset email sent ✅");
-    } catch (err: any) {
-      toast.error(err.message);
+    } catch {
+      toast.error("Something went Wrong");
     }
   };
 
@@ -52,8 +52,8 @@ export default function LoginPage() {
       await signInWithPopup(auth, provider);
       toast.success("Google Login successful ✅");
       router.push("/dashboard");
-    } catch (err: any) {
-      toast.error(err.message);
+    } catch {
+      toast.error("Failed to Login");
     }
   };
 

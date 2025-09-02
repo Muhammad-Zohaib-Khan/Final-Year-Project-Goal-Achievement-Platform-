@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 
-type Props = {};
+
 
 const navItems = [
   {
@@ -64,7 +64,7 @@ const navItems = [
   },
 ];
 
-const Bar = (props: Props) => {
+const Bar = () => {
   const [open, setOpen] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();

@@ -22,7 +22,7 @@ const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
         onClose={() => setIsModalNewProjectOpen(false)}
       />
       <div>
-        {"Develepment Board"} //backend will fetch the project name
+        {"Develepment Board"} 
       </div>
 
       {/* TABS */}

@@ -25,8 +25,7 @@ export default function SignupPage() {
     return "Medium";
   };
 
-  const handleSignup = async (e: any) => {
-    e.preventDefault();
+  const handleSignup = async () => {
     if (password !== confirmPassword) {
       toast.error("Passwords do not match ❌");
       return;
@@ -49,8 +48,8 @@ export default function SignupPage() {
 
       toast.success("Account created successfully 🎉");
       router.push("/dashboard");
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch {
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }

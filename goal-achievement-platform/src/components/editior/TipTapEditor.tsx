@@ -8,10 +8,17 @@ import { useDebounce } from "@/lib/useDebouncs";
 // import { useMutation } from "@tanstack/react-query"; // ⛔️ Backend: Mutation logic (commented)
 import Text from "@tiptap/extension-text";
 // import axios from "axios"; // ⛔️ Backend: Axios for API call (commented)
-import { NoteType } from "@/lib/db/schema";
+// import { NoteType } from "@/lib/db/schema";
 import { useCompletion } from "ai/react";
 import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+
+// Temporary replacement until schema.ts exists
+type NoteType = {
+  id: string;
+  name: string;
+  editorState?: string;
+};
 
 type Props = { note: NoteType };
 
@@ -19,27 +26,25 @@ const TipTapEditor = ({ note }: Props) => {
   const [editorState, setEditorState] = React.useState(
     note.editorState || `<h1>${note.name}</h1>`
   );
+  const [isSaving, setIsSaving] = React.useState(false);
 
-  const { complete, completion } = 
-  
-  useCompletion({
-    api: "/api/completion", // ⛔️ Would normally call AI API endpoint
+  const { complete, completion } = useCompletion({
+    api: "/api/completion",
   });
 
-  // ⛔️ Backend mutation logic replaced with placeholder
-  const saveNote = {
-    mutate: () => {
-      console.log("Simulated save to database with content:", editorState);
-    },
-    isLoading: false,
-  };
+  // ✅ stable saveNote
+  const saveNote = React.useCallback(() => {
+    setIsSaving(true);
+    console.log("Simulated save to database with content:", editorState);
+    setTimeout(() => setIsSaving(false), 300); // fake async
+  }, [editorState]);
 
   const customText = Text.extend({
     addKeyboardShortcuts() {
       return {
         "Shift-a": () => {
           const prompt = this.editor.getText().split(" ").slice(-30).join(" ");
-          complete(prompt); // ⛔️ Would normally trigger AI text generation
+          complete(prompt);
           return true;
         },
       };
@@ -61,17 +66,15 @@ const TipTapEditor = ({ note }: Props) => {
     if (!completion || !editor) return;
     const diff = completion.slice(lastCompletion.current.length);
     lastCompletion.current = completion;
-    editor.commands.insertContent(diff); // insert AI-completed text
+    editor.commands.insertContent(diff);
   }, [completion, editor]);
 
   const debouncedEditorState = useDebounce(editorState, 500);
 
   React.useEffect(() => {
     if (debouncedEditorState === "") return;
-
-    // ⛔️ Would normally call backend to save note
-    saveNote.mutate();
-  }, [debouncedEditorState]);
+    saveNote();
+  }, [debouncedEditorState, saveNote]);
 
   return (
     <motion.div
@@ -83,7 +86,7 @@ const TipTapEditor = ({ note }: Props) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         {editor && <TipTapMenuBar editor={editor} />}
         <Button disabled variant="outline" className="w-fit text-green-700 border-green-400">
-          {saveNote.isLoading ? "Saving..." : "Saved"}
+          {isSaving ? "Saving..." : "Saved"}
         </Button>
       </div>
 

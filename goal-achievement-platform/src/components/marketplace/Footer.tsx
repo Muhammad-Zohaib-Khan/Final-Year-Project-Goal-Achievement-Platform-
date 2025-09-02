@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -9,7 +8,7 @@ const Footer = () => {
           {/*<Image className="w-28 md:w-32" src="https://media.istockphoto.com/id/1466153678/photo/shield-concept-3d-rendering-shield-with-check-mark.webp?a=1&b=1&s=612x612&w=0&k=20&c=IBV4xLxrSCBD7Y6dA78PveT7Qq2I1U0ouEtxTM-SSrU=" alt="logo" />*/}
           <p className="mt-6 text-sm">
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
+            industry. Lorem Ipsum has been the  standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
             and scrambled it to make a type specimen book.
           </p>
